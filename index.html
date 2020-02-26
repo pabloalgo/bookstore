@@ -13,13 +13,13 @@
 		/>
 		<!-- Fancy Box CSS -->
 		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-		<!-- Font Awesome CSS -->
+		<!-- Font Awesome CSS 
 		<link
 			rel="stylesheet"
 			href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
 			integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
 			crossorigin="anonymous"
-		/>
+		/> -->
 		<!-- Local CSS -->
 		<link rel="stylesheet" href="./css/style.css" />
 		<!-- Fancy Box jQuery & CDN -->
@@ -101,7 +101,9 @@
 															<p>{book.descripcion}</p>
 														</div>
 														<div className="moreinfo">
-															<button className="btn btn-info">"More Info"</button>
+															<a data-fancybox="gallery" href={book.portada}>
+																<button className="btn btn-info">"More Info"</button>{" "}
+															</a>
 														</div>
 													</div>
 												</div>
