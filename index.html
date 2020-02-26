@@ -86,6 +86,7 @@
 								{this.state.books
 									.filter(book => book.titulo.toLowerCase().includes(this.state.searchText.toLowerCase()) || this.state.searchText === "")
 									.map(book => {
+										console.log(book);
 										return (
 											<div key={book.titulo} className="flip-card ">
 												<div className="flip-card-inner">
