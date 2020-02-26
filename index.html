@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Bookworms</title>
+		<!-- Bootstrap CSS -->
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+			integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+			crossorigin="anonymous"
+		/>
+		<!-- Fancy Box CSS -->
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+		<!-- Font Awesome CSS -->
+		<link
+			rel="stylesheet"
+			href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+			integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+			crossorigin="anonymous"
+		/>
+		<!-- Local CSS -->
+		<link rel="stylesheet" href="./css/style.css" />
+		<!-- Fancy Box jQuery & CDN -->
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+		<!-- React & Babel CDN -->
+		<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+		<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+		<script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+	</head>
+	<body>
+		<div id="bookApp">
+			<!-- Everything will be shown here -->
+		</div>
+		<script type="text/babel">
+			//React code goes here
+			class App extends React.Component {
+				constructor(props) {
+					super(props);
+					this.state = {
+						books: [],
+
+						searchText: ""
+					};
+					console.log("this.state books[]", this.state);
+				}
+				componentDidMount() {
+					fetch("https://api.myjson.com/bins/1h3vb3")
+						.then(res => res.json())
+						.then(data =>
+							this.setState({
+								books: data.books
+							})
+						)
+						.catch(error => console.log(error));
+				}
+
+				inputSearch = e => {
+					console.log("AQUI e.target.value", e.target.value);
+					this.setState({
+						searchText: e.target.value
+					});
+				};
+
+				render() {
+					return (
+						<div>
+							<div className="miboxT">
+								<div className="miBoxTinisde">
+									<h1 className="myTitle">
+										<img className="logo" src="./img/library-15.png" alt="LOGO BOOKSTORE" /> Bookworms
+									</h1>
+								</div>
+								<div>
+									{/*	<!---- onChange={this.inputSearch}  -----> */}
+
+									<input onChange={this.inputSearch} type="text" id="searchBar" placeholder="Search your book..." />
+								</div>
+							</div>
+							<div className="container p-0">
+								<hr />
+							</div>
+							<div className="allbooks">
+								{this.state.books
+									.filter(book => book.titulo.toLowerCase().includes(this.state.searchText.toLowerCase()) || this.state.searchText === "")
+									.map(book => {
+										return (
+											<div key={book.titulo} className="flip-card ">
+												<div className="flip-card-inner">
+													<div className="flip-card-front">
+														<img className="bookportada" src={book.portada} alt="" />
+													</div>
+													<div className="flip-card-back">
+														<div className="myTitlebook">
+															<h5>{book.titulo}</h5>
+														</div>
+														<div className="bookDescription">
+															<p>{book.descripcion}</p>
+														</div>
+														<div className="moreinfo">
+															<button className="btn btn-info">"More Info"</button>
+														</div>
+													</div>
+												</div>
+											</div>
+										);
+									})}
+							</div>
+						</div>
+					);
+				}
+			}
+			ReactDOM.render(<App />, document.getElementById("bookApp"));
+		</script>
+	</body>
+</html>
