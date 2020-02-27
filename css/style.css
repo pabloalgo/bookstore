@@ -1,3 +1,10 @@
+p h1 h2 h3 h4 h5 h6 {
+	font-family: "Roboto", sans-serif;
+	color: #ffffff;
+	text-shadow: 0 0.04em 0.04em rgba(0, 0, 0, 0.35);
+	text-align: center;
+}
+
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card {
 	background-color: transparent;
@@ -108,4 +115,43 @@
 
 .logo {
 	width: 30px;
+}
+
+.myButton {
+	display: inline-block;
+	padding: 0.3em 1.2em;
+	margin: 0 0.1em 0.1em 0;
+	border: 0.16em solid rgba(255, 255, 255, 0);
+	border-radius: 1.4em;
+	box-sizing: border-box;
+	text-decoration: none;
+	font-weight: 300;
+	font-family: "Roboto", sans-serif;
+	color: #ffffff;
+	text-shadow: 0 0.04em 0.04em rgba(0, 0, 0, 0.35);
+	text-align: center;
+	transition: all 0.3s;
+	background-color: #4e9af1;
+	border-style: solid;
+	border-width: 9px;
+}
+.myButton:hover {
+	/*	border-color: rgba(255, 255, 255, 1) 20px; */
+	border-radius: 1.6em;
+	transition: all 0.2s;
+	font-weight: bold;
+
+	border-style: solid;
+	border-width: 8px;
+	color: #ffffff;
+	background-color: ##4eecf1;
+}
+
+@media screen and (max-width: 30em) {
+	.myButton {
+		display: block;
+		margin: 0.2em auto;
+		width: 100%;
+		transition: all 0.2s;
+	}
 }
